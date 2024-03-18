@@ -16,6 +16,9 @@ class UserProfile(models.Model):
     voicemail_enabled = models.BooleanField(default=True)
     voicemail_greeting = models.TextField(null=True, blank=True)
 
+    class Meta:
+        app_label = "user_profile"
+
 
 class ServiceProvider(models.Model):
     user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE, related_name='service_provider')
@@ -27,7 +30,10 @@ class ServiceProvider(models.Model):
     website_url = models.URLField(max_length=255, null=True, blank=True)
     # Possible addition: Address, Operating Hours
 
+    class Meta:
+        app_label = "service_provider"
 
+    # #TO-DO: All Tables should have a meta tag
 
 class CallRecord(models.Model):
     caller = models.ForeignKey(UserProfile, related_name='made_calls', on_delete=models.CASCADE)
@@ -37,6 +43,8 @@ class CallRecord(models.Model):
     authenticated = models.BooleanField(default=False)
     duration = models.IntegerField(help_text="Duration in seconds", null=True, blank=True)  # For completed calls
 
+    class Meta:
+        app_label = "call_record"
 
 class UserFeedback(models.Model):
     call_record = models.ForeignKey(CallRecord, on_delete=models.CASCADE)
@@ -45,9 +53,14 @@ class UserFeedback(models.Model):
     comment = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        app_label = "user_feedback"
 
 class AnalyticsData(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     event_type = models.CharField(max_length=255)
     data = models.JSONField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        app_label = "analytics_data"

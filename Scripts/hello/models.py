@@ -3,9 +3,11 @@ from django.db import models
 # Create your models here.
 from django.db import models
 
+
 class UserProfile(models.Model):
     firebase_uid = models.CharField(max_length=128, unique=True, db_index=True)
     name = models.CharField(max_length=255, null=True, blank=True)
+    surname = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField(max_length=255, unique=True)
     phone_number = models.CharField(max_length=20, unique=True, null=True, blank=True)
     is_service_provider = models.BooleanField(default=False)

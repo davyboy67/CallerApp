@@ -37,10 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # THIRD PARTY APPS
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
     'debug_toolbar',
+
+    # CUSTOM APPS
+    'hello'
     # CORS_ALLOWED_ORGINS does not belong in installed_apps. Rather it is a setting related to CORS handling
 ]
 

@@ -31,8 +31,6 @@ class ServiceProvider(models.Model):
     # Possible addition: Address, Operating Hours
 
 
-    # #TO-DO: All Tables should have a meta tag
-
 class CallRecord(models.Model):
     caller = models.ForeignKey(UserProfile, related_name='made_calls', on_delete=models.CASCADE)
     receiver = models.ForeignKey(UserProfile, related_name='received_calls', on_delete=models.CASCADE)
